@@ -32,12 +32,14 @@ document.addEventListener("DOMContentLoaded", function () {
 	document.getElementById('transactions').innerHTML = renderTransactions(fullTransactionData);
 
 	document.getElementById('search-input').addEventListener('input', function (e) {
-		var searchString = e.target.value;
+		var searchString = document.getElementById('search-input').value;
+		searchString = searchString.toLowerCase();
+		debugger;
 		var filteredData = fullTransactionData.filter(function (transaction) {
-			var foundInName = transaction.name.indexOf(searchString) > -1;
-			var foundInFor = transaction.for.indexOf(searchString) > -1;
-			var foundInDate = transaction.date.indexOf(searchString) > -1;
-			var foundInAmount = transaction.amount.indexOf(searchString) > -1;
+			var foundInName = transaction.name.toLowerCase().indexOf(searchString) > -1;
+			var foundInFor = transaction.for.toLowerCase().indexOf(searchString) > -1;
+			var foundInDate = transaction.date.toLowerCase().indexOf(searchString) > -1;
+			var foundInAmount = transaction.amount.toLowerCase().indexOf(searchString) > -1;
 			return foundInName || foundInFor || foundInDate || foundInAmount;
 		});
 
